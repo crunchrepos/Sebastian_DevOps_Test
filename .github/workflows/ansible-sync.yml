@@ -1,0 +1,22 @@
+name: Desplegar en AWX
+
+on:
+  push:
+    branches:
+      - feature/actions
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      AWX_URL: ${{ secrets.AWX_URL }}
+      AWX_TOKEN: ${{ secrets.AWX_TOKEN }}
+
+    steps:
+    - name: Desplegar en AWX
+      run: |
+        curl -X POST $AWX_URL/api/v2/workflow_job_templates/183/github/ \
+        -H "Authorization: Token $AWX_TOKEN" \
+        -H "Content-Type: application/json" \
+        -d '{"extra_vars": {"key": "values"}}'
