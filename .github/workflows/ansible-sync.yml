@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      AWX_URL: ${{ secrets.AWX_URL }}
+      AWX_URL: ${{ varialbe.AWX_URL }}
       AWX_TOKEN: ${{ secrets.AWX_TOKEN }}
 
     steps:
