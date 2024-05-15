@@ -3,7 +3,7 @@ name: Desplegar en AWX
 on:
   push:
     branches:
-      - feature/actions
+      - feature/action
 
 jobs:
   deploy:
