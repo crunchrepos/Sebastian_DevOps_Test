@@ -1,4 +1,4 @@
-name: Desplegar en AWX
+name: GitHub Actions with AWX
 
 on:
   push:
@@ -8,15 +8,20 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    
     env:
-      AWX_URL: ${{ env.AWX_URL }}
+      AWX_URL: ${{ secrets.AWX_URL }}
       AWX_TOKEN: ${{ secrets.AWX_TOKEN }}
 
     steps:
-    - name: Desplegar en AWX
+    - name: Sync
+      run: |
+        # Add commands to perform synchronization here
+        echo "Syncing..."
+
+    - name: Deploy with AWX
       run: |
         curl -X POST $AWX_URL/api/v2/workflow_job_templates/183/github/ \
         -H "Authorization: Token $AWX_TOKEN" \
         -H "Content-Type: application/json" \
-        -d '{"extra_vars": {"key": "values"}}'
+        -d '{"extra_vars": {"clave": "valor"}}'
